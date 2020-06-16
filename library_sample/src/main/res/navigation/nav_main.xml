@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/drawerFragment"
+    android:id="@+id/nav_main">
+    <fragment
+        android:id="@+id/drawerFragment"
+        android:name="com.example.library_user.ui.SampleListFragement"
+        android:label="fragment_drawer"
+        tools:layout="@layout/fragment_uer" >
+
+        <action
+            android:id="@+id/action_mainFragment_to_featureOneFragment"
+            app:destination="@id/sampleListFragement" />
+
+        </fragment>
+
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="com.example.library_user.ui.SecondFragment"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_second" />
+    <fragment
+        android:id="@+id/sampleListFragement"
+        android:name="com.example.library_user.ui.SampleListFragement"
+        tools:layout="@layout/fragment_sample"
+        android:label="SampleListFragement" />
+
+</navigation>

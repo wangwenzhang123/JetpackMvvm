@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="false" android:drawable="@drawable/tab_bar_category_ic">
+
+    </item>
+    <item android:state_selected="true" android:drawable="@drawable/tab_bar_category_selected_ic">
+
+    </item>
+</selector>
