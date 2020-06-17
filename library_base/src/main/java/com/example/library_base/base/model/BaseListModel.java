@@ -11,7 +11,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import java.util.List;
 
 public abstract class BaseListModel<T>extends BaseModel implements BaseListModelView <T>{
-    private int mCurrentPage;
+    public int mCurrentPage;
     ObservableBoolean isFinshRefrash=new ObservableBoolean();
     ObservableBoolean isShowEmpty=new ObservableBoolean();
     {

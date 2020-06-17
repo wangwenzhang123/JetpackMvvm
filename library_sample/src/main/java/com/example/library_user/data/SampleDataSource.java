@@ -5,7 +5,6 @@ package com.example.library_user.data;
 import com.example.library_base.net.bean.BaseAppEntity;
 import com.example.library_base.net.client.KRetrofitFactory;
 import com.example.library_user.bean.ImageBean;
-import com.example.library_user.bean.UserBean;
 import com.example.library_user.service.SampleApi;
 
 import java.util.List;

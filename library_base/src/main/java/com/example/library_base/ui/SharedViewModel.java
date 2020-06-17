@@ -22,8 +22,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.library_base.base.livedata.UnPeekLiveData;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  *
@@ -46,13 +45,5 @@ public class SharedViewModel extends ViewModel {
 
     // 如果这么说还不理解的话，
     // 详见 https://xiaozhuanlan.com/topic/0168753249 和 https://xiaozhuanlan.com/topic/6257931840
-
-    public static final List<String> TAG_OF_SECONDARY_PAGES = new ArrayList<>();
-    public static final ObservableBoolean IS_DRAWER_OPENED = new ObservableBoolean();
-    public final UnPeekLiveData<Boolean> timeToAddSlideListener = new UnPeekLiveData<>();
-    public final UnPeekLiveData<Boolean> closeSlidePanelIfExpanded = new UnPeekLiveData<>();
-    public final UnPeekLiveData<Boolean> activityCanBeClosedDirectly = new UnPeekLiveData<>();
-    public final UnPeekLiveData<Boolean> openOrCloseDrawer = new UnPeekLiveData<>();
-    public final UnPeekLiveData<Boolean> enableSwipeDrawer = new UnPeekLiveData<>();
-
+    public final UnPeekLiveData<Boolean> isLogin = new UnPeekLiveData<>();
 }

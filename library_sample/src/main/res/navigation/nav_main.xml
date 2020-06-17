@@ -8,11 +8,11 @@
         android:id="@+id/drawerFragment"
         android:name="com.example.library_user.ui.SampleListFragement"
         android:label="fragment_drawer"
-        tools:layout="@layout/fragment_uer" >
+        tools:layout="@layout/fragment_sample" >
 
         <action
             android:id="@+id/action_mainFragment_to_featureOneFragment"
-            app:destination="@id/sampleListFragement" />
+            app:destination="@id/secondFragment" />
 
         </fragment>
 
@@ -21,10 +21,5 @@
         android:name="com.example.library_user.ui.SecondFragment"
         android:label="fragment_second"
         tools:layout="@layout/fragment_second" />
-    <fragment
-        android:id="@+id/sampleListFragement"
-        android:name="com.example.library_user.ui.SampleListFragement"
-        tools:layout="@layout/fragment_sample"
-        android:label="SampleListFragement" />
 
 </navigation>

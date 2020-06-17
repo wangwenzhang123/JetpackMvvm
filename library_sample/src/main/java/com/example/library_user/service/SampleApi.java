@@ -6,7 +6,6 @@ package com.example.library_user.service;
 
 import com.example.library_base.net.bean.BaseAppEntity;
 import com.example.library_user.bean.ImageBean;
-import com.example.library_user.bean.UserBean;
 
 import java.util.List;
 

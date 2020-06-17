@@ -62,14 +62,14 @@ public abstract class BaseActivity<M extends BaseModel> extends AppCompatActivit
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
-        BarUtils.setStatusBarLightMode(this, true);
+        //BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
+        //BarUtils.setStatusBarLightMode(this, true);
         getLifecycle().addObserver(NetworkStateManager.getInstance());
         ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
         if (type != null) {
             Type[] actualTypeArguments = type.getActualTypeArguments();
             Class<M> tClass = (Class<M>) actualTypeArguments[0];
-            viewModel= ((AppContext)getApplicationContext()).getAppViewModelProvider(this).get(tClass);
+            viewModel= getActivityViewModel(tClass);
         }
         initViewModel();
         baseDialog=getDialog();
@@ -77,7 +77,7 @@ public abstract class BaseActivity<M extends BaseModel> extends AppCompatActivit
         DataBindingConfig dataBindingConfig = getDataBindingConfig();
         ViewDataBinding binding = DataBindingUtil.setContentView(this, dataBindingConfig.getLayout());
         binding.setLifecycleOwner(this);
-        binding.setVariable(BR._all, dataBindingConfig.getStateViewModel());
+        binding.setVariable(BR.vm, dataBindingConfig.getStateViewModel());
         SparseArray bindingParams = dataBindingConfig.getBindingParams();
         for (int i = 0, length = bindingParams.size(); i < length; i++) {
             binding.setVariable(bindingParams.keyAt(i), bindingParams.valueAt(i));

@@ -9,8 +9,6 @@ package com.example.library_base.app;
  */
 public class AppActivityKey {
     public static final String SAMPLE_ACTIVITY="/sample/SampleActivity";
-    public static final String SAMPLELIST_ACTIVITY="/sample/SampleListActivity";
-    public static final String NATIVE="/text/NavigationActivity";
-    public static final String SAMPLEREFESH_ACTIVITY="/sample/SampleRefreshActivity";
-    public static final String LOGIN_REGISTER="/login/RegisterActivity";
+    public static final String MAIN_ACTIVITY="/main/MainActivity";
+
 }

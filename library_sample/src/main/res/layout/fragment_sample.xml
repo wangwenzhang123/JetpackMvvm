@@ -8,11 +8,37 @@
         <variable
             name="adapter"
             type="com.example.library_user.adapter.SampleAdapter" />
+        <variable
+            name="click"
+            type="com.example.library_user.ui.SampleListFragement.Click" />
     </data>
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:onClick="@{()->click.startSecond()}"
+                android:textColor="@android:color/black"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                android:text="@string/start_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:onClick="@{()->click.startMain()}"
+                android:textColor="@android:color/black"
+                android:textSize="18dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center"
+                android:text="@string/start_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
 
             android:id="@+id/smart"
@@ -36,6 +62,6 @@
                 
             </com.scwang.smartrefresh.layout.footer.ClassicsFooter>
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-    </FrameLayout>
+    </LinearLayout>
     
 </layout>

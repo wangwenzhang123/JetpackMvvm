@@ -44,6 +44,8 @@ import com.example.library_base.BR;
 import com.example.library_base.appContext.AppContext;
 import com.example.library_base.base.model.BaseModel;
 import com.example.library_base.dialog.base.BaseDialog;
+import com.example.library_base.manager.NetState;
+import com.example.library_base.manager.NetworkStateManager;
 import com.example.library_base.ui.fragment.NavHostFragment;
 
 import java.lang.reflect.ParameterizedType;
@@ -80,18 +82,17 @@ public abstract class BaseFragment<M extends BaseModel> extends Fragment {
         if (type != null) {
             Type[] actualTypeArguments = type.getActualTypeArguments();
             Class<M> tClass = (Class<M>) actualTypeArguments[0];
-            viewModel= ((AppContext)getActivity().getApplicationContext()).getAppViewModelProvider(getActivity()).get(tClass);
+            viewModel= getActivityViewModel(tClass);
         }
-        initViewModel();
         //TODO 注意 liveData 的 lambda 回调中不可为空，不然会出现 Cannot add the same observer with different lifecycles 的现象，
         // 详见：https://stackoverflow.com/questions/47025233/android-lifecycle-library-cannot-add-the-same-observer-with-different-lifecycle
-       // NetworkStateManager.getInstance().mNetworkStateCallback.observe(this, this::onNetworkStateChanged);
+        NetworkStateManager.getInstance().mNetworkStateCallback.observe(this, this::onNetworkStateChanged);
     }
 
-    /*@SuppressWarnings("EmptyMethod")
+    @SuppressWarnings("EmptyMethod")
     protected void onNetworkStateChanged(NetState netState) {
         //TODO 子类可以重写该方法，统一的网络状态通知和处理
-    }*/
+    }
 
     protected abstract DataBindingConfig getDataBindingConfig();
 
@@ -99,16 +100,7 @@ public abstract class BaseFragment<M extends BaseModel> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         DataBindingConfig dataBindingConfig = getDataBindingConfig();
-
-        //TODO tip: DataBinding 严格模式：
-        // 将 DataBinding 实例限制于 base 页面中，默认不向子类暴露，
-        // 通过这样的方式，来彻底解决 视图调用的一致性问题，
-        // 如此，视图刷新的安全性将和基于函数式编程的 Jetpack Compose 持平。
-
-        // 如果这样说还不理解的话，详见 https://xiaozhuanlan.com/topic/9816742350 和 https://xiaozhuanlan.com/topic/2356748910
-
         ViewDataBinding binding = DataBindingUtil.inflate(inflater, dataBindingConfig.getLayout(), container, false);
         binding.setLifecycleOwner(this);
         binding.setVariable(BR.vm, dataBindingConfig.getStateViewModel());
@@ -122,6 +114,7 @@ public abstract class BaseFragment<M extends BaseModel> extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initViewModel();
         if (viewModel != null){
             viewModel.isShowLoadingData.observe(this, new Observer<Boolean>() {
                 @Override
@@ -137,11 +130,6 @@ public abstract class BaseFragment<M extends BaseModel> extends Fragment {
             });
         }
     }
-
-    protected void loadInitData() {
-
-    }
-
     public boolean isDebug() {
         return mActivity.getApplicationContext().getApplicationInfo() != null &&
                 (mActivity.getApplicationContext().getApplicationInfo().flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;

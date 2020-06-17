@@ -6,6 +6,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.library_base.app.AppActivityKey;
 import com.example.library_base.dialog.base.BaseDialog;
 import com.example.library_base.ui.BaseListFragment;
 import com.example.library_base.ui.DataBindingConfig;
@@ -40,7 +42,20 @@ public class SampleListFragement extends BaseListFragment<SampleListModel> {
     @Override
     protected DataBindingConfig getDataBindingConfig() {
         return new DataBindingConfig(R.layout.fragment_sample,viewModel)
+                .addBindingParam(BR.click,new Click())
                 .addBindingParam(BR.adapter, new SampleAdapter(getContext()));
-    }
 
+    }
+    public class Click{
+        public void startSecond(){
+            Bundle bundle=new Bundle();
+            bundle.putString("name","王神");
+            nav().navigate(R.id.action_mainFragment_to_featureOneFragment,bundle);
+        }
+        public void startMain(){
+            Bundle bundle=new Bundle();
+            bundle.putString("name","王神");
+            ARouter.getInstance().build(AppActivityKey.MAIN_ACTIVITY).with(bundle).navigation();
+        }
+    }
 }
