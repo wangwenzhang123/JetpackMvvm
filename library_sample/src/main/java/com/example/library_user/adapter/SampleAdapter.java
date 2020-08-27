@@ -13,7 +13,11 @@ import com.example.library_user.bean.ImageBean;
 import com.example.library_user.databinding.ItemSampleBinding;
 import com.example.library_user.ui.SampleListFragement;
 
+import java.util.List;
+
 public class SampleAdapter extends BaseBindingAdapter<ImageBean, ItemSampleBinding> {
+
+
     public SampleAdapter(Context context) {
         super(context);
     }

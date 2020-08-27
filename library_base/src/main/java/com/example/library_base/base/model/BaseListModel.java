@@ -19,7 +19,7 @@ public abstract class BaseListModel<T>extends BaseModel implements BaseListModel
         isShowEmpty.set(false);
     }
     public MutableLiveData<List<T>> list=new MutableLiveData<>();
-
+    public MutableLiveData<List<T>> moreList=new MutableLiveData<>();
     public int getFirstPageIndex(){
         return 1;
     }
@@ -66,8 +66,7 @@ public abstract class BaseListModel<T>extends BaseModel implements BaseListModel
                 list.setValue(dataSources);
             } else {
                 if (dataSources != null && tList!= null){
-                    tList.addAll(dataSources);
-                    list.setValue(tList);
+                    moreList.setValue(dataSources);
                     refreshLayout.finishLoadMore();
                 }
             }

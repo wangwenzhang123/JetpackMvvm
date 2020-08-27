@@ -50,7 +50,11 @@ public abstract class BaseBindingAdapter<M, B extends ViewDataBinding> extends R
     public void setList(List<M> list) {
         this.mList = list;
     }
-
+    public void loadList(List<M> moreList){
+        if (moreList != null && mList != null){
+            this.mList.addAll(moreList);
+        }
+    }
     @Override
     public int getItemCount() {
         return null == this.mList ? 0 : this.mList.size();
